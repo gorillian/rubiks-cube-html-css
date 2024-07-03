@@ -1,0 +1,93 @@
+.perspective {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1250px;
+  perspective-origin: 50% -300px;
+  height: 100vh;
+}
+
+.box {
+  --size: 200px;
+  --bigsize: 400px;
+  --blocksize: 65px;
+  width: var(--size);
+  aspect-ratio: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 100px bottom -100px;
+  animation: rotate 6s linear infinite;
+}
+
+.face {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: absolute;
+  width: var(--size);
+  aspect-ratio: 1;
+  border-radius: 10px;
+
+  background-color: hsl(125.6deg 93.97% 32.65%);
+
+  transform-style: preserve-3d;
+}
+
+.block {
+  width: var(--blocksize);
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.face.front {
+  --lightness: 66%;
+}
+
+.face.bottom {
+  top: 100%;
+  background-color: white;
+  transform-origin: top;
+  transform: rotateX(-90deg);
+  --lightness: 74%;
+}
+
+.face.top {
+  bottom: 100%;
+  background-color: yellow;
+  transform-origin: bottom;
+  transform: rotateX(90deg);
+  --lightness: 74%;
+}
+
+.face.back {
+  bottom: 200%;
+  background-color: blue;
+  transform-origin: center 300px -100px;
+  transform: rotateX(180deg);
+  --lightness: 78%;
+}
+
+.face.right {
+  left: 100%;
+  background-color: red;
+  transform-origin: left;
+  transform: rotateY(90deg);
+  --lightness: 70%;
+}
+
+.face.left {
+  right: 100%;
+  background-color: orange;
+  transform-origin: right;
+  transform: rotateY(-90deg);
+  --lightness: 70%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
